@@ -99,8 +99,11 @@ RESULT ANALYSIS
 
 Test type        Samples   Error %   Avg Resp (ms)   95th %ile (ms)   Throughput (req/s)
 ----------------------------------------------------------------------------------------
+
 Load Test        3,634     51.9%     ~567            ~1181            ~2.0
+
 Endurance Test   14,436    51.8%     ~544            ~1159            ~2.0
+
 Spike Test       766       52.3%     ~719            ~1788            ~2.1
 
 Observation:
