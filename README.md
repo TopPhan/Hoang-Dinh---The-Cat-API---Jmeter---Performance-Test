@@ -72,28 +72,27 @@ The project focuses on 4 main request APIs, grouped into 2 Transaction Controlle
 ---
 DIRECTORY STRUCTURE
 
-- **CSV data sets**
-    - Contains all necessary CSV data files for the tests.
-- **HtmlReport**
-    - Stores HTML reports generated after each test run.
-- **Results**
-    - Holds the raw JMeter result logs (.jtl files).
-- **Screenshots**
-    - Contains screenshots for Load, Endurance, and Spike tests.
-- **cmd-run-endurance test.jpg**
-    - Screenshot of the Endurance Test execution run in Command Prompt (CMD).
-- **cmd-run-load test.jpg**
-    - Screenshot of the Load Test execution run in Command Prompt (CMD).
-- **cmd-run-spike test.jpg**
-    - Screenshot of the Spike Test execution run in Command Prompt (CMD).
-- **EnduranceTest_CRUD_TheCatAPI.jmx**
-    - The JMeter script for the Endurance Test.
-- **LoadTest_CRUD_TheCatAPI.jmx**
-    - The JMeter script for the Load Test.
-- **SpikeTest_CRUD_TheCatAPI.jmx**
-    - The JMeter script for the Spike Test.
-- **Test Flow.xlsx**
-    - Documentation detailing the overall test flow and logic.
+- **CSV data sets**: Contains all necessary CSV data files for the tests.
+
+- **HtmlReport**: Stores HTML reports generated after each test run.
+
+- **Results**: Holds the raw JMeter result logs (.jtl files).
+
+- **Screenshots**: Contains screenshots for Load, Endurance, and Spike tests.
+
+- **cmd-run-endurance test.jpg**: Screenshot of the Endurance Test execution run in Command Prompt (CMD).
+
+- **cmd-run-load test.jpg**: Screenshot of the Load Test execution run in Command Prompt (CMD).
+
+- **cmd-run-spike test.jpg**: Screenshot of the Spike Test execution run in Command Prompt (CMD).
+
+- **EnduranceTest_CRUD_TheCatAPI.jmx**: The JMeter script for the Endurance Test.
+
+- **LoadTest_CRUD_TheCatAPI.jmx**: The JMeter script for the Load Test.
+
+- **SpikeTest_CRUD_TheCatAPI.jmx**: The JMeter script for the Spike Test.
+
+- **Test Flow.xlsx**: Documentation detailing the overall test flow and logic.
 
 ---
 RESULT ANALYSIS
