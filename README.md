@@ -1,6 +1,9 @@
 🐈 The Cat API Performance Testing Project - https://api.thecatapi.com/v1
+
 Execution Period: October 26, 2025 – October 31, 2025
+
 Tester: Hoàng Đỉnh
+
 Tool used: Apache JMeter (Non-GUI mode, executed via CMD)
 Objective: Evaluate the performance of The Cat API through 3 testing scenarios:
  + Load Test
