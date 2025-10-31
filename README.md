@@ -12,6 +12,7 @@ Objective: Evaluate the performance of The Cat API through 3 testing scenarios:
 
 ---
 OVERVIEW
+
 Hello, this is my performance testing project for The Cat API. I carried out this project with the goal of evaluating 
 
 the stability and performance of the API under different conditions.
@@ -69,6 +70,7 @@ The project focuses on 4 main request APIs, grouped into 2 Transaction Controlle
 
 ---
 DIRECTORY STRUCTURE
+
 /CSV data sets          → Contains CSV files 
 
 /HtmlReport             → HTML reports after each test run
@@ -95,13 +97,14 @@ Test Flow.xlsx             → Documentation of test flow and logic
 ---
 RESULT ANALYSIS
 
-Test Type        Samples   Error %   Avg Resp (ms)   95th %ile (ms)   Throughput (req/s)
+Test type        Samples   Error %   Avg Resp (ms)   95th %ile (ms)   Throughput (req/s)
 ----------------------------------------------------------------------------------------
 Load Test        3,634     51.9%     ~567            ~1181            ~2.0
 Endurance Test   14,436    51.8%     ~544            ~1159            ~2.0
 Spike Test       766       52.3%     ~719            ~1788            ~2.1
 
 Observation:
+
 - **GET-SEARCH-IMAGE** is stable (error <3%).
   
 - **Transaction controler 1: Add/Delete Favorite** is unstable (70–99% errors, high latency ~20s).
