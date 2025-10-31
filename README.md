@@ -71,40 +71,37 @@ The project focuses on 4 main request APIs, grouped into 2 Transaction Controlle
 ---
 DIRECTORY STRUCTURE
 
-/CSV data sets          → Contains CSV files 
-
-/HtmlReport             → HTML reports after each test run
-
-/Results                → Raw JMeter result logs (.jtl)
-
-/Screenshots            → Screenshots for Load, Endurance, and Spike tests
-
-cmd-run-endurance test.jpg  → Screenshot of Endurance Test run in CMD
-
-cmd-run-load test.jpg       → Screenshot of Load Test run in CMD
-
-cmd-run-spike test.jpg      → Screenshot of Spike Test run in CMD
-
-
-EnduranceTest_CRUD_TheCatAPI.jmx → JMeter script for Endurance Test
-
-LoadTest_CRUD_TheCatAPI.jmx      → JMeter script for Load Test
-
-SpikeTest_CRUD_TheCatAPI.jmx     → JMeter script for Spike Test
-
-Test Flow.xlsx             → Documentation of test flow and logic
+- **CSV data sets**
+    - Contains all necessary CSV data files for the tests.
+- **HtmlReport**
+    - Stores HTML reports generated after each test run.
+- **Results**
+    - Holds the raw JMeter result logs (.jtl files).
+- **Screenshots**
+    - Contains screenshots for Load, Endurance, and Spike tests.
+- **cmd-run-endurance test.jpg**
+    - Screenshot of the Endurance Test execution run in Command Prompt (CMD).
+- **cmd-run-load test.jpg**
+    - Screenshot of the Load Test execution run in Command Prompt (CMD).
+- **cmd-run-spike test.jpg**
+    - Screenshot of the Spike Test execution run in Command Prompt (CMD).
+- **EnduranceTest_CRUD_TheCatAPI.jmx**
+    - The JMeter script for the Endurance Test.
+- **LoadTest_CRUD_TheCatAPI.jmx**
+    - The JMeter script for the Load Test.
+- **SpikeTest_CRUD_TheCatAPI.jmx**
+    - The JMeter script for the Spike Test.
+- **Test Flow.xlsx**
+    - Documentation detailing the overall test flow and logic.
 
 ---
 RESULT ANALYSIS
 
-Test type        Samples   Error %   Avg Resp (ms)   95th %ile (ms)   Throughput (req/s)
-----------------------------------------------------------------------------------------
-
-Load Test        3,634     51.9%     ~567            ~1181            ~2.0
-
-Endurance Test   14,436    51.8%     ~544            ~1159            ~2.0
-
-Spike Test       766       52.3%     ~719            ~1788            ~2.1
+| Test type | Samples | Error % | Avg Resp (ms) | 95th %ile (ms) | Throughput (req/s) |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| Load Test | 3,634 | 51.9% | ~567 | ~1181 | ~2.0 |
+| Endurance Test | 14,436 | 51.8% | ~544 | ~1159 | ~2.0 |
+| Spike Test | 766 | 52.3% | ~719 | ~1788 | ~2.1 |
 
 Observation:
 
