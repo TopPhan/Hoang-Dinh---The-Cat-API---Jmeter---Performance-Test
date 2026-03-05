@@ -1,119 +1,186 @@
-🐈 The Cat API Performance Testing Project - https://api.thecatapi.com/v1
+![JMeter](https://img.shields.io/badge/Apache_JMeter-5.6-red?style=flat-square&logo=apache)
+![Test Type](https://img.shields.io/badge/Test_Type-Load_·_Endurance_·_Spike-orange?style=flat-square)
+![Samplers](https://img.shields.io/badge/Total_Samplers-18%2C836-blue?style=flat-square)
+![API](https://img.shields.io/badge/Target_API-The_Cat_API-ff69b4?style=flat-square)
+![Non-GUI](https://img.shields.io/badge/Execution-Non--GUI_CMD-black?style=flat-square)
+# ⚡ The Cat API — Performance Testing with Apache JMeter
 
-Execution Period: October 26, 2025 – October 31, 2025
+Performance testing project evaluating the stability and load capacity of [The Cat API](https://api.thecatapi.com/v1) across three test scenarios using Apache JMeter in Non-GUI mode.
 
-Tester: Hoàng Đỉnh
-
-Tool used: Apache JMeter (Non-GUI mode, executed via CMD)
-
-Objective: Evaluate the performance of The Cat API through 3 testing scenarios:
- + Load Test
- + Endurance Test
- + Spike Test
+<img width="1343" height="661" alt="image" src="https://github.com/user-attachments/assets/a0941dc4-4c55-470e-9b21-44355c484cac" />
 
 ---
-OVERVIEW
 
-Hello, this is my performance testing project for The Cat API. I carried out this project with the goal of evaluating 
-
-the stability and performance of the API under different conditions.
+<img width="1327" height="663" alt="image" src="https://github.com/user-attachments/assets/4b374173-fc08-4e30-9e77-9aefeec66855" />
 
 ---
-JMETER TECHNIQUES:
 
-**User Defined Variables**: Store common settings (like **protocol**, **base_url**) to simplify test maintenance.
-
-**Correlation**: Extract dynamic values (image_id, favourite_id) with **JSON/Regex Extractor**.
-
-**Parameterization**: Use **CSV Data Set** (Search_image_parameters.csv) for data-driven tests.
-
-**Throughput Control**: Limit requests to ≤120 req/min with **Constant Throughput Timer**.
-
-**Transaction Controllers**: Group Add Favorite & Delete Favorite for end-to-end measurement.
-
-**Non-GUI Execution**: Run tests via CMD for accuracy and efficiency.
+<img width="1335" height="655" alt="image" src="https://github.com/user-attachments/assets/bacbdc16-dee7-4df1-9004-57daf2ecd488" />
 
 ---
-NOTE
 
-Testing was conducted using the free plan of The Cat API.
+## 📋 Project Overview
 
-Due to plan restrictions, the maximum sample rate was limited to 120 requests per minute.
-
-Required plugin **Custom Thread Group** in JMeter plugin manager to executed spike test.
-
----
-TEST LOGICAL
-
-The Cat API specification here: https://documenter.getpostman.com/view/5578104/RWgqUxxh#8606c7c6-338e-46aa-8f1a-3335ed2b8127
-
-The project focuses on 4 main request APIs, grouped into 2 Transaction Controllers:
-
-**Transaction Controller 1**: Add Image Favorite
-
-	1.GET – Search Image
-	
-		-> Retrieve image list, extract **image_id**.
-		
-	2.POST – Favourites Image
-	
-		-> Send **image_id** to add an image to favorites, extract **favourite_id**.
-
-**Transaction Controller 2**: Delete Image Favorite
-
-	1.GET – Image Favourited_ID
-	
-		-> Retrieve information of the favorited image using **favourite_id**.
-		
-	2.DELETE – Image Favourited
-	
-		-> Remove the favorited image using **favourite_id**.
+| Item | Detail |
+|---|---|
+| **Target API** | https://api.thecatapi.com/v1 |
+| **Tool** | Apache JMeter (Non-GUI mode via CMD) |
+| **Test Period** | October 26 – October 31, 2025 |
+| **Test Types** | Load Test · Endurance Test · Spike Test |
+| **Total Samplers** | 18,836 across all 3 scenarios |
 
 ---
-DIRECTORY STRUCTURE
 
-- **CSV data sets**: Contains all necessary CSV data files for the tests.
+## 🧪 Test Scenarios
 
-- **HtmlReport**: Stores HTML reports generated after each test run.
+### 🔵 Load Test
+Simulates normal to peak traffic to evaluate API performance under expected load conditions.
+![Load Test - Config - Thread Group](https://github.com/user-attachments/assets/5f6625ce-87d3-4490-ba0a-da14edd99b22)
 
-- **Results**: Holds the raw JMeter result logs (.jtl files).
+### 🟢 Endurance Test
+Runs sustained traffic over an extended period to detect memory leaks, degradation, or slowdowns over time.
+![Endurance Test - Config - Thread Group](https://github.com/user-attachments/assets/803af355-04b5-46b9-b646-068b52077b33)
 
-- **Screenshots**: Contains screenshots for Load, Endurance, and Spike tests.
-
-- **cmd-run-endurance test.jpg**: Screenshot of the Endurance Test execution run in Command Prompt (CMD).
-
-- **cmd-run-load test.jpg**: Screenshot of the Load Test execution run in Command Prompt (CMD).
-
-- **cmd-run-spike test.jpg**: Screenshot of the Spike Test execution run in Command Prompt (CMD).
-
-- **EnduranceTest_CRUD_TheCatAPI.jmx**: The JMeter script for the Endurance Test.
-
-- **LoadTest_CRUD_TheCatAPI.jmx**: The JMeter script for the Load Test.
-
-- **SpikeTest_CRUD_TheCatAPI.jmx**: The JMeter script for the Spike Test.
-
-- **Test Flow.xlsx**: Documentation detailing the overall test flow and logic.
+### 🔴 Spike Test
+Sends sudden bursts of high traffic to evaluate how the API handles unexpected load spikes.
+![Spike Test - Config - Ultimate Thread Group](https://github.com/user-attachments/assets/de57e50a-fe21-47f6-ab47-ff972a562776)
 
 ---
-RESULT ANALYSIS
 
-| Test type | Samples | Error % | Avg Resp (ms) | 95th %ile (ms) | Throughput (req/s) |
-| :--- | :---: | :---: | :---: | :---: | :---: |
-| Load Test | 3,634 | 51.9% | ~567 | ~1181 | ~2.0 |
-| Endurance Test | 14,436 | 51.8% | ~544 | ~1159 | ~2.0 |
-| Spike Test | 766 | 52.3% | ~719 | ~1788 | ~2.1 |
+## 🔄 Test Flow & API Endpoints
 
-Observation:
+The project covers 4 API endpoints grouped into 2 Transaction Controllers:
 
-- **GET-SEARCH-IMAGE** is stable (error <3%).
-  
-- **Transaction controler 1: Add/Delete Favorite** is unstable (70–99% errors, high latency ~20s).
-  
-- Indicates The Cat API limitations or backend bottlenecks under load.
+```
+Transaction Controller 1 — Add Image Favorite
+    ├── GET  /images/search        → Retrieve image list, extract {image_id}
+    └── POST /favourites           → Add image to favorites, extract {favourite_id}
+
+Transaction Controller 2 — Delete Image Favorite
+    ├── GET  /favourites/{id}      → Retrieve favorited image info
+    └── DELETE /favourites/{id}   → Remove image from favorites
+```
 
 ---
-CONCLUSION
 
-The Cat API can handle search requests reliably, but the favorite-related endpoints show significant instability under load.
+## 🛠️ JMeter Techniques Applied
 
-Further optimization or backend improvements are required to ensure consistent performance.
+| Technique | Purpose |
+|---|---|
+| **User Defined Variables** | Centralize config (protocol, base_url) for easy maintenance |
+| **JSON Extractor** | Extract dynamic values: `image_id`, `favourite_id` for correlation |
+| **CSV Data Set Config** | Parameterize search queries from `Search_image_parameters.csv` |
+| **Constant Throughput Timer** | Limit requests to ≤120 req/min (free plan constraint) |
+| **Transaction Controllers** | Group related requests for end-to-end latency measurement |
+| **Custom Thread Group** | Required plugin for Spike Test ramp-up/ramp-down patterns |
+| **Non-GUI Execution** | Run via CMD for accurate results without UI overhead |
+
+---
+
+## 📊 Results Summary
+
+| Test Type | Samples | Error % | Avg Response (ms) | 95th Percentile (ms) | Throughput (req/s) |
+|---|:---:|:---:|:---:|:---:|:---:|
+| **Load Test** | 3,634 | 51.9% | ~567 | ~1,181 | ~2.0 |
+| **Endurance Test** | 14,436 | 51.8% | ~544 | ~1,159 | ~2.0 |
+| **Spike Test** | 766 | 52.3% | ~719 | ~1,788 | ~2.1 |
+
+### Breakdown by Endpoint
+
+| Endpoint | Load Error % | Endurance Error % | Spike Error % |
+|---|:---:|:---:|:---:|
+| GET /images/search | **1.2%** ✅ | **0.7%** ✅ | **3.0%** ✅ |
+| POST /favourites | 68.5% ❌ | 68.7% ❌ | 70.4% ❌ |
+| GET /favourites/{id} | 68.9% ❌ | 69.0% ❌ | 71.3% ❌ |
+| DELETE /favourites/{id} | 69.0% ❌ | 68.9% ❌ | 70.7% ❌ |
+| **TC1: Add Favorite** | 98.9% ❌ | 99.7% ❌ | 74.3% ❌ |
+| **TC2: Delete Favorite** | 99.7% ❌ | 99.9% ❌ | 72.8% ❌ |
+
+---
+
+## 🔍 Analysis & Observations
+
+**✅ Stable endpoint:**
+- `GET /images/search` performed reliably across all 3 test types with error rates below 3% and average response time under 870ms.
+
+**❌ Unstable endpoints:**
+- All write operations (POST, GET by ID, DELETE) showed 68–99% error rates with average latency reaching up to ~20 seconds on transaction level.
+- High latency on Transaction Controllers (avg ~19,000–20,000ms) indicates server-side bottlenecks or rate limiting on write operations under the free plan.
+
+**Root cause assessment:**
+- The Cat API free plan enforces strict rate limits on write endpoints. The observed errors are consistent with HTTP 429 (Too Many Requests) or server-side throttling — not a framework issue.
+- `GET /images/search` (read-only) is not subject to the same restrictions, explaining its low error rate.
+
+---
+
+## 🏁 Conclusion
+
+The Cat API handles **read requests reliably** under sustained and spike load. However, **write endpoints (favorites CRUD)** show significant instability under any load beyond minimal traffic — consistent with free-tier API limitations rather than inherent system failure.
+
+**Recommendation:** Production-grade testing of write endpoints would require a paid API plan with higher rate limits to obtain meaningful performance baselines.
+
+---
+
+## 📁 Project Structure
+
+```
+📦 The-Cat-API-JMeter-Performance-Test
+├── 📂 CSV data sets/
+│   └── Search_image_parameters.csv     # Parameterized search data
+├── 📂 HtmlReport/
+│   ├── Load Test/                      # HTML report - Load Test
+│   ├── Endurance Test/                 # HTML report - Endurance Test
+│   └── Spike Test/                     # HTML report - Spike Test
+├── 📂 Results/
+│   ├── Loadtest_result.jtl             # Raw JMeter results - Load Test
+│   ├── EnduranceTest_result.jtl        # Raw JMeter results - Endurance Test
+│   └── Spiketest_result.jtl            # Raw JMeter results - Spike Test
+├── 📂 Screenshots/
+│   ├── Thread Group Config/            # Thread group configurations
+│   ├── Request API/                    # API request screenshots
+│   └── ...                            # Other config screenshots
+├── LoadTest_CRUD_TheCatAPI.jmx         # JMeter script - Load Test
+├── EnduranceTest_CRUD_TheCatAPI.jmx    # JMeter script - Endurance Test
+├── SpikeTest_CRUD_TheCatAPI.jmx        # JMeter script - Spike Test
+├── Test Flow.xlsx                      # Full test flow documentation
+├── cmd-run-load test.jpg               # CMD execution screenshot
+├── cmd-run-endurance test.jpg          # CMD execution screenshot
+└── cmd-run-spike test.jpg              # CMD execution screenshot
+```
+
+---
+
+## ⚙️ How to Run
+
+### Prerequisites
+- Apache JMeter installed
+- **Custom Thread Group** plugin installed (JMeter Plugin Manager → install `Custom Thread Group`)
+- Valid API key from [thecatapi.com](https://thecatapi.com)
+
+### Update API Key
+Open any `.jmx` file → find **User Defined Variables** → update `api_key` value.
+
+### Run via Non-GUI mode (recommended)
+
+```bash
+# Load Test
+jmeter -n -t LoadTest_CRUD_TheCatAPI.jmx -l Results/Loadtest_result.jtl -e -o HtmlReport/Load\ Test/
+
+# Endurance Test
+jmeter -n -t EnduranceTest_CRUD_TheCatAPI.jmx -l Results/EnduranceTest_result.jtl -e -o HtmlReport/Endurance\ Test/
+
+# Spike Test
+jmeter -n -t SpikeTest_CRUD_TheCatAPI.jmx -l Results/Spiketest_result.jtl -e -o HtmlReport/Spike\ Test/
+```
+
+---
+
+## 📌 Notes
+
+- Testing conducted under the **free plan** of The Cat API — maximum throughput limited to **≤120 requests/minute**.
+- Spike Test requires the **Custom Thread Group** plugin to configure ramp-up/ramp-down patterns properly.
+- All tests executed in **Non-GUI mode** for accurate, unbiased results.
+
+---
+
+*By Phan Hoàng Đỉnh | Performance Testing Portfolio*
